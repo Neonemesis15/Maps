@@ -1,0 +1,218 @@
+﻿[
+    {
+        "name": "categoria 1",
+        "distri": [
+            {
+                "name": "distri 1",
+                "value": 2500
+            },
+            {
+                "name": "distri 2",
+                "value": 1502
+            }
+        ],
+        "subcatego": [
+            {
+                "name": "sub categori 1",
+                "distri": [
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    },
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    }
+                ]
+            },
+            {
+                "name": "sub categori 1",
+                "distri": [
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    },
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    }
+                ]
+            },
+            {
+                "name": "sub categori 1",
+                "distri": [
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    },
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "categoria 2",
+        "distri": [
+            {
+                "name": "distri 1",
+                "value": 2500
+            },
+            {
+                "name": "distri 2",
+                "value": 1502
+            }
+        ],
+        "subcatego": [
+            {
+                "name": "sub categori 1",
+                "distri": [
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    },
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    }
+                ]
+            },
+            {
+                "name": "sub categori 1",
+                "distri": [
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    },
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    }
+                ]
+            },
+            {
+                "name": "sub categori 1",
+                "distri": [
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    },
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "categoria 3",
+        "distri": [
+            {
+                "name": "distri 1",
+                "value": 2500
+            },
+            {
+                "name": "distri 2",
+                "value": 1502
+            }
+        ],
+        "subcatego": [
+            {
+                "name": "sub categori 1",
+                "distri": [
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    },
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    }
+                ]
+            },
+            {
+                "name": "sub categori 1",
+                "distri": [
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    },
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    }
+                ]
+            },
+            {
+                "name": "sub categori 1",
+                "distri": [
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    },
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "categoria 4",
+        "distri": [
+            {
+                "name": "distri 1",
+                "value": 2500
+            },
+            {
+                "name": "distri 2",
+                "value": 1502
+            }
+        ],
+        "subcatego": [
+            {
+                "name": "sub categori 1",
+                "distri": [
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    },
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    }
+                ]
+            },
+            {
+                "name": "sub categori 1",
+                "distri": [
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    },
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    }
+                ]
+            },
+            {
+                "name": "sub categori 1",
+                "distri": [
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    },
+                    {
+                        "name": "sub catego 1",
+                        "value": 145
+                    }
+                ]
+            }
+        ]
+    }
+]

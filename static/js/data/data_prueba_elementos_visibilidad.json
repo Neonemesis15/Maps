@@ -1,0 +1,78 @@
+﻿[
+    {
+        "name": "company 1",
+        "elements": [
+            {
+                "name": "elemento 1",
+                "val": 1542
+            },
+            {
+                "name": "elemento 2",
+                "val": 1342
+            },
+            {
+                "name": "elemento 3",
+                "val": 132
+            },
+            {
+                "name": "elemento 4",
+                "val": 2542
+            },
+            {
+                "name": "elemento 3",
+                "val": 142
+            }
+        ]
+    },
+    {
+        "name": "company 2",
+        "elements": [
+            {
+                "name": "elemento 1",
+                "val": 1542
+            },
+            {
+                "name": "elemento 2",
+                "val": 1342
+            }
+        ]
+    },
+    {
+        "name": "company 3",
+        "elements": [
+            {
+                "name": "elemento 1",
+                "val": 1542
+            },
+            {
+                "name": "elemento 2",
+                "val": 1342
+            },
+            {
+                "name": "elemento 3",
+                "val": 132
+            },
+            {
+                "name": "elemento 4",
+                "val": 2542
+            }
+        ]
+    },
+    {
+        "name": "company 4",
+        "elements": [
+            {
+                "name": "elemento 1",
+                "val": 1542
+            },
+            {
+                "name": "elemento 2",
+                "val": 1342
+            },
+            {
+                "name": "elemento 3",
+                "val": 132
+            }
+        ]
+    }
+]

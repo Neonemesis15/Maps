@@ -1,0 +1,42 @@
+﻿{
+    "datos": [
+        {
+            "list_skus": [
+                {
+                    "list_distri": [
+                        {
+                            "valor_dist": "152",
+                            "name_dist": "CODIJISA",
+                            "cod_dist": "1"
+                        },
+                        {
+                            "valor_dist": "552",
+                            "name_dist": "CODIFER",
+                            "cod_dist": "2"
+                        }
+                    ],
+                    "name_sku": "colgate",
+                    "cod_sku": "0"
+                },
+                {
+                    "list_distri": [
+                        {
+                            "valor_dist": "152",
+                            "name_dist": "CODIJISA",
+                            "cod_dist": "1"
+                        },
+                        {
+                            "valor_dist": "552",
+                            "name_dist": "CODIFER",
+                            "cod_dist": "2"
+                        }
+                    ],
+                    "name_sku": "C Herbal",
+                    "cod_sku": "1"
+                }
+            ],
+            "name_subcate": "Toothpaste",
+            "cod_subcate": "1"
+        }
+    ]
+}

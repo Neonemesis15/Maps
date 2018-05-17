@@ -1,0 +1,25 @@
+﻿#header
+{
+    height: 100px;
+    width: 100%;
+    background-image: url('http://sige.lucky.com.pe/Pages/Modulos/Cliente/Reportes/MasterPageV2/images/header.jpg');
+    background-repeat: no-repeat;
+    }
+    
+body, html 
+{
+    margin: 0;
+    padding: 0;
+    }
+    
+#header img
+{
+    float: right;
+    }
+    
+#menu
+{
+    display:table-cell;
+    vertical-align:bottom;
+    padding-top:50px;
+    }

@@ -1,0 +1,71 @@
+.x-border-box, .x-border-box * {
+box-sizing: content-box;
+-moz-box-sizing: content-box;
+-ms-box-sizing: content-box;
+-webkit-box-sizing: content-box;
+}
+
+.select2-input {
+    box-sizing: none;
+    -moz-box-sizing: none;
+    -ms-box-sizing: none;
+    -webkit-box-sizing: none;
+}
+
+#rigthCol {
+    width: 480px;
+}
+
+#rigthColGPS {
+    width: 100%;
+}
+
+#appLayout, #mapRegion, #mapPanel, #centerContainer
+{
+    height: 100%;
+    }
+
+#viewsChart {
+	width: 550px;
+	height: 550px;
+}
+
+.centerPanel
+{
+    height: 100%;
+    }
+    
+#filterPanel
+{
+    overflow: hidden;
+    height: auto;
+    }
+
+.fht-table-wrapper .fht-tbody {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+        
+.nav-tabs > .active > div, .nav-tabs > .active > a:hover {
+    color: #555;
+    cursor: default;
+    background-color: white;
+    border: 1px solid #DDD;
+    border-bottom-color: transparent;
+}
+.nav-tabs > li > div {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    line-height: 20px;
+    border: 1px solid transparent;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+}
+.nav-tabs > li > div, .nav-pills > li > div {
+    padding-right: 12px;
+    padding-left: 12px;
+    margin-right: 2px;
+    line-height: 14px;
+    cursor: pointer;
+}

@@ -1,0 +1,686 @@
+﻿/*estilo general de la página*/
+@import url("http://ajax.googleapis.com/ajax/libs/dojo/1.8.0/dojox/layout/resources/ExpandoPane.css");
+
+body, html{
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    height: 100%;
+    font-size: 85%;
+    font-family: Verdana, Tahoma, Arial, "Helvetica Neue" , Helvetica, Sans-Serif;    
+}
+
+.page
+{
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#footer
+{
+    color: #999999;
+    padding: 18px 0;
+    text-align: center;
+    vertical-align: middle;
+    line-height: normal;
+    margin: 0px 0px 0px 0px;
+}
+
+
+/* mapas
+---------------------------------------------------*/
+
+.mapa
+{
+    width:100%;
+    height: 100%;
+ }
+
+.portada
+{
+    height:540px;
+    }
+
+/*-----------------------------------------------------*/
+/* FIXES conflict between bootstrap and google maps v3 */
+#map img, .mapa img {
+    max-width: none;
+    }
+/*---------------------------------------------------*/
+
+#header
+{
+    height: 40px;
+}
+
+.dropdown-menu .sub-menu {
+    left: 100%;
+    position: absolute;
+    top: 0;
+    visibility: hidden;    
+}
+
+.dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.nav-tabs .dropdown-menu, .nav-pills .dropdown-menu, .navbar .dropdown-menu {
+    margin-top: 0;
+}
+
+.navbar
+{
+    margin: auto;
+    }
+
+.navbar .sub-menu:before {
+    border-bottom: 7px solid transparent;
+    border-left: none;
+    border-right: 7px solid rgba(0, 0, 0, 0.2);
+    border-top: 7px solid transparent;
+    left: -7px;
+    /*top: 10px;*/
+}
+.navbar .sub-menu:after {
+    border-top: 6px solid transparent;
+    border-left: none;
+    border-right: 6px solid #fff;
+    border-bottom: 6px solid transparent;
+    left: 10px;
+    top: 11px;
+    left: -6px;
+}
+
+.navbar
+{
+    margin-top: 5px;
+    }
+.nav li
+{
+    color: #025ba1;
+    font-weight: bold;
+    font-size: 14px;
+    }
+    
+.btn-group
+{
+    margin-bottom: 16px;
+    }
+    
+    
+.table th + th, .table td + td
+{
+    text-align:center;
+    }
+    
+#panel
+{
+    background-color:#ffffff;
+    font-size: .9em;
+    height: 579px;
+    
+    }
+#panels
+{
+    overflow: auto;
+    }
+
+.row-fluid
+{
+    background-color:#ffffff;
+    }
+   
+#semaforo
+{
+    list-style:none;
+    margin-left: 0;
+    padding-left : 0;
+    }
+#semaforo li
+{
+    list-style:none;
+    margin-left: 1em;
+    margin-right: 1em;
+    
+    }
+#semaforo li img
+{   
+    margin-right: 5px;
+    margin-bottom: 3px;
+}
+
+.toggle-filter
+{
+    height: 10px;
+    margin-top: 4px;
+    background-color: #EEEEFF;
+    }
+
+#ddl_departamento, #ddl_provincia, #ddl_zona, #ddl_distrito, #ddl_anio, #ddl_mes, #ddl_periodo
+{
+    margin-top: 9px;
+    margin-left: 4px;
+    margin-right: 4px;
+    }
+
+#map_chart select
+{
+    width: 300px;
+    }
+    
+#filters select
+{
+    height: 25px;
+    width: 98px;
+    }
+
+#modal-content
+{
+    max-width:890px;
+    }
+    
+.modal-header
+{
+    text-align: center;
+    }
+    
+.scrollpop, .tab-content, #p_visibilidad_tab {
+    height: 268px;
+}
+
+.scrollpop {
+    overflow: auto;
+}
+
+#p_venta_pdv {
+    height: 312px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#ricon
+{
+    float:right;
+    margin-top:50%;
+    }
+    
+#legend
+{
+    font-size: .8em;
+    }
+        
+#legend table
+{
+    margin: 0px;
+    border: 1px solid #DDD;
+    border-collapse: separate;
+    }
+    
+.icon-ok
+{
+    background-image: url("/static/images/icon-check.png");
+    }
+    
+.row-fluid .span4 {
+    width: 65.70%;
+    }
+
+.row-fluid .span4 {
+    width: 31.20%;
+}
+
+.jspVerticalBar
+{
+    width:8px;
+    }
+
+.jspHorizontalBar 
+{
+    height:8px;
+    }
+    
+.scrolltable
+{
+    height:150px;
+    width:370px;
+    margin-top: 5px;
+    }
+    
+.scrolltable table
+{   
+    width:410px;
+    
+    }
+
+    
+#tb_pdv_pcolgate
+{
+    /*width: 280px;*/
+    height: 250px;
+    }
+
+#container div
+{
+    text-align: center;
+    /*height: 305px;*/
+    }
+    
+#container img {
+    
+    height: 125px;
+    width: 240px;
+}
+
+#tb_resumen_periodo
+{
+    margin-bottom:0px;
+    }
+
+.bordered
+{
+border: 1px solid #DDD;
+border-collapse: separate;
+/*border-left: 0;*/
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+}
+
+.imglabel
+{
+    margin-top: 45px;
+    font-weight:bold;
+    }
+    
+.icon_det_pdv
+{
+    height:13px;
+    width:16px;
+    }
+    
+.table-condensed td {
+padding: 2px 12px;
+border-left: 1px solid #CCC;
+}
+
+
+.botonmarker
+{
+    cursor: pointer;
+    }
+    
+.row-selected
+{
+    background-color: #CCCCCC;
+    }
+    
+.tab-content
+{
+    
+    }
+    
+ /* CSS styles for Ext interface*/
+ 
+ #app-header {
+    color: #596F8F;
+    font-size: 22px;
+    font-weight: 200;
+    padding: 8px 10px;
+    text-shadow: 0 1px 0 #fff;
+}
+#app-msg {
+    background: #D1DDEF;
+    border: 1px solid #ACC3E4;
+    padding: 3px 15px;
+    font-weight: bold;
+    font-size: 13px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.x-panel-ghost {
+    z-index: 1;
+}
+.x-border-layout-ct {
+    background: #DFE8F6;
+}
+.x-portal-body {
+    padding: 0 0 0 3px;
+}
+.x-portal .x-portal-column {
+    /* columns must have vertical padding to avoid losing dimensions when empty */
+    padding: 3px 3px 0 0;
+}
+.x-portal .x-panel-dd-spacer {
+    border: 2px dashed #99bbe8;
+    background: #f6f6f6;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    margin-bottom: 10px;
+}
+.x-portlet {
+    margin-bottom:10px;
+    padding: 1px;
+}
+.x-portlet .x-panel-body {
+    background: #fff;
+}
+.portlet-content {
+    padding: 10px;
+    font-size: 11px;
+}
+
+#app-options .portlet-content {
+    padding: 5px;
+    font-size: 12px;
+}
+
+
+/*!
+ * Ext JS
+ * Copyright(c) 2006-2012 Sencha Inc.
+ * licensing@sencha.com
+ * http://www.sencha.com/license
+ */
+
+.example-info{
+    width:150px;
+    border:1px solid #c3daf9;
+    border-top:1px solid #DCEAFB;
+    border-left:1px solid #DCEAFB;
+    background:#ecf5fe url( info-bg.gif ) repeat-x;
+    font-size:10px;
+    padding:8px;
+}
+pre.code{
+    background: #F8F8F8;
+    border: 1px solid #e8e8e8;
+    padding:10px;
+    margin:10px;
+    margin-left:0px;
+    border-left:5px solid #e8e8e8;
+    font-size: 12px !important;
+    line-height:14px !important;
+}
+.msg .x-box-mc {
+    font-size:14px;
+}
+#msg-div {
+    position:absolute;
+    left:35%;
+    top:10px;
+    width:300px;
+    z-index:20000;
+}
+#msg-div .msg {
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    background: #F6F6F6;
+    border: 2px solid #ccc;
+    margin-top: 2px;
+    padding: 10px 15px;
+    color: #555;
+}
+#msg-div .msg h3 {
+    margin: 0 0 8px;
+    font-weight: bold;
+    font-size: 15px;
+}
+#msg-div .msg p {
+    margin: 0;
+}
+.x-grid3-row-body p {
+    margin:5px 5px 10px 5px !important;
+}
+
+.feature-list {
+    margin-bottom: 15px;
+}
+.feature-list li {
+    list-style: disc;
+    margin-left: 17px;
+    margin-bottom: 4px;
+}
+/*
+.x-tool img {
+    height: 19px;
+}*/
+
+
+/** CSS For customizing Bootstrap tabs **/
+
+#map_panel .nav-tabs li
+{
+    width: 50%;
+    text-align: center;
+    }
+.x-splitter
+{
+    background-color: #DFE9F6;
+    }
+#map_panel
+{
+    height: 100%;
+    }
+    
+#map_panel .tab-content
+{
+    height: 90%;
+    }
+    
+    
+#modal-content table
+{
+    width: 100%;
+    }
+
+#popup_info
+{
+    width: 890px;
+    height: 550px;    
+    }
+
+#imgfullsize
+{
+    /*818
+    303*/
+    text-align:center;
+    }
+  /*
+#closeimg
+{
+    top:0px;
+    right:0px;
+    float: right;
+    }*/
+     
+#imgfullsize img
+{
+    height: 250px;
+    width: 750px;
+    }
+   
+
+.excel-icons {
+   background-image: url(/static/img/excel-icon.png) !important;
+}
+
+.chart-icons {
+   background-image: url(/static/img/chart-icon.png) !important;
+}
+
+.label{width:100%;}
+.kpi{width:80px;}
+
+.modal-body
+{
+    max-height: 600px;
+    }
+
+.ui-show 
+{
+    display: block;
+	/*color: blue;
+	transition: all 0.5s ease; */
+}
+.ui-hide 
+{
+    display: none;
+	/*opacity: 0;
+	transition: all 0.5s ease; */
+}
+
+#preloader {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #fff url('https://ajax.googleapis.com/ajax/libs/dojo/1.8.0/dojox/image/resources/images/loading.gif') no-repeat center center;
+    position: absolute;
+    z-index: 999;
+}
+
+#dni-pdv table{
+    margin-top: 15px;
+}
+
+#leftpanel
+{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 312px;
+    }
+    
+#container > div:first
+{
+    height: 312px;
+    }
+    
+#pinicial, #pcompuesto /*, #leftpanel, #p_pdvinfo*/
+{
+    margin-left: 0px;
+    min-height: 305px;
+    }
+    
+/*  DGRID  */
+
+.claro .ui-widget-header, .claro .dgrid-footer {
+    background: #EBF0F5;
+    background: -moz-linear-gradient(top, #EBF0F5 0%, #D5E0EA 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#EBF0F5), color-stop(100%,#D5E0EA));
+    background: -webkit-linear-gradient(top, #EBF0F5 0%,#D5E0EA 100%);
+    background: -o-linear-gradient(top, #EBF0F5 0%,#D5E0EA 100%);
+    background: -ms-linear-gradient(top, #EBF0F5 0%,#D5E0EA 100%);
+    background: linear-gradient(top, #EBF0F5 0%,#D5E0EA 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf0f5', endColorstr='#d5e0ea',GradientType=0 );
+}
+
+.claro .ui-widget-header .dgrid-cell:hover {
+    background: #EBF1F6;
+    background: -moz-linear-gradient(top, white 0%, #D2E0EB 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,white), color-stop(100%,#D2E0EB));
+    background: -webkit-linear-gradient(top, white 0%,#D2E0EB 100%);
+    background: -o-linear-gradient(top, white 0%,#D2E0EB 100%);
+    background: -ms-linear-gradient(top, white 0%,#D2E0EB 100%);
+    background: linear-gradient(top, white 0%,#D2E0EB 100%);
+}
+
+#widget_fecha
+{
+    height: 22px;
+}
+
+.claro .dijitDialog
+{
+    border: none;
+}
+  
+.dijitDialogTitleBar
+{
+    -webkit-border-radius: 5px 5px 0px 0px;
+    -ms-border-radius: 5px 5px 0px 0px;
+    -moz-border-radius: 5px 5px 0px 0px;
+    -o-border-radius: 5px 5px 0px 0px;
+    border-radius: 5px 5px 0px 0px;
+    text-align: center;
+    font-weight: bold;
+    color: #2B5270;
+}
+
+.dijitDialogPaneContent
+{
+    -webkit-border-radius: 0px 0px 5px 5px;
+    -ms-border-radius: 0px 0px 5px 5px;
+    -moz-border-radius: 0px 0px 5px 5px;
+    -o-border-radius: 0px 0px 5px 5px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+#popup_underlay {
+    background-color: #000000;
+}
+
+#popup_subtitle
+{
+    text-align: center;
+}
+
+.table-bottom-bordered {
+    border: 1px solid #DDD;
+    border-collapse: separate;
+    border-left: 0;
+    -webkit-border-radius: 0px 0px 4px 4px;
+    -moz-border-radius: 0px 0px 4px 4px;
+    -ms-border-radius: 0px 0px 4px 4px;
+    -o-border-radius: 0px 0px 4px 4px;
+    border-radius: 0px 0px 4px 4px;
+    margin-bottom: 0px;
+}
+
+.table-bottom-bordered tbody:first-child tr:first-child td:first-child {
+    -webkit-border-top-left-radius: 0;
+    border-top-left-radius: 0;
+    -moz-border-radius-topleft: 0;
+}
+
+.nav-no-margin
+{
+    margin-bottom: 0px;
+    }
+    
+
+.labels {
+    color: black;
+    background-color: white;
+    font-family: "Lucida Grande", "Arial", sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    padding: 0px 8px 0px 8px;
+    width: auto;     
+    border: 2px solid black;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    white-space: nowrap;
+}
+​ 
+#title_capa_selec {
+    background-color:red; 
+    border : 5px dashed black;   
+    position:fixed;
+    width:300px;
+    height:100px;
+    top:20px;
+    right:0px;
+    text-align:center;  
+}

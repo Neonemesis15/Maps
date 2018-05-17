@@ -1,0 +1,65 @@
+﻿[
+    {
+        "name": "Nacional",
+        "val": 102562,
+        "clusters": [
+            {
+                "name": "A",
+                "val": 25,
+                "perce": 25.25
+            },
+            {
+                "name": "B",
+                "val": 35,
+                "perce": 35.25
+            },
+            {
+                "name": "C",
+                "val": 40,
+                "perce": 40
+            }
+        ]
+    },
+    {
+        "name": "Departamento o Zona o Provincia Esp.",
+        "val": 102562,
+        "clusters": [
+            {
+                "name": "A",
+                "val": 25,
+                "perce": 25.25
+            },
+            {
+                "name": "B",
+                "val": 35,
+                "perce": 35.25
+            },
+            {
+                "name": "C",
+                "val": 40,
+                "perce": 40
+            }
+        ]
+    },
+    {
+        "name": "Distrito : ---",
+        "val": 102562,
+        "clusters": [
+            {
+                "name": "A",
+                "val": 25,
+                "perce": 25.25
+            },
+            {
+                "name": "B",
+                "val": 35,
+                "perce": 35.25
+            },
+            {
+                "name": "C",
+                "val": 40,
+                "perce": 40
+            }
+        ]
+    }
+]
