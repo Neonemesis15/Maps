@@ -1,0 +1,639 @@
+﻿@{
+    ViewBag.Title = "Mayorista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section JavaScript
+{
+    <link href="@Url.Content("~/static/css/fixedheader/default.css")" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="@Url.Content("~/static/js/vendor/fixed-header.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/static/js/vendor/tooltip.js")"></script> 
+    <script type="text/javascript" src="@Url.Content("~/static/js/app/controllers/minorista-c.js")"></script>
+    
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#btn_ver_regiones").show();
+            $("#btn_ver_departamentos").show();
+            $("#btn_ver_nacional").hide();
+            $("#btn_ver_distritos").hide();
+            $('.table-fixed-header').fixedHeaderTable({ footer: false,
+                cloneHeadToFoot: false,
+                altClass: 'odd'
+            });
+            $(".table-fixed-header thead").removeAttr('style');
+            $('#tb_pdv_visipres').fixedHeaderTable({ footer: false,
+                cloneHeadToFoot: false,
+                altClass: 'odd'
+            });
+
+            $('#tb_pdv_visicant').fixedHeaderTable({ footer: false,
+                cloneHeadToFoot: false,
+                altClass: 'odd'
+            });
+        });
+
+        $("#imgfullsize").hide();
+        $("#container").show();
+
+        $("#tb_ventas thead").on("click", function () {
+            $(".conceadable").toggle(200);
+            if ($("#ventasicon").hasClass("icon-plus-sign")) {
+                $("#ventasicon").attr("class", "icon-minus-sign");
+            }
+            else {
+                $("#ventasicon").attr("class", "icon-plus-sign");
+            }
+        });
+
+        $("#btn-inicio").click(function () {
+            $("#p_presencia_tab").hide();
+            $("#p_visibilidad_tab").hide();
+            $("#p_venta_pdv").hide();
+            $("#pinicial").show();
+            $("#pcompuesto").hide();
+        });
+
+        $("#btn-pdvpres").click(function () {
+            $("#p_presencia_tab").show();
+            $("#p_visibilidad_tab").hide();
+            $("#p_venta_pdv").hide();
+            $("#pinicial").hide();
+            $("#pcompuesto").show();
+        });
+
+        $("#btn-pdvvisi").click(function () {
+            $("#p_presencia_tab").hide();
+            $("#p_visibilidad_tab").show();
+            $("#pinicial").hide();
+            $("#pcompuesto").show();
+            $("#p_venta_pdv").hide();
+
+            $('#tb_pdv_visicant').fixedHeaderTable({ footer: false,
+                cloneHeadToFoot: false,
+                altClass: 'odd'
+            });
+        });
+
+        $('#p_visibilidad_tab ul li div:first').click(function (event) {
+            $('#p_visibilidad_tab > div > div:first').addClass('active');
+            $('#p_visibilidad_tab > div > div:last').removeClass('active');
+            $('#tb_pdv_visicant').fixedHeaderTable({ footer: false,
+                cloneHeadToFoot: false,
+                altClass: 'odd'
+            });
+        });
+
+
+        $('#p_visibilidad_tab ul li div:last').click(function (event) {
+            $('#p_visibilidad_tab > div > div:last').addClass('active');
+            $('#p_visibilidad_tab > div > div:first').removeClass('active');
+            $('#tb_pdv_visipres').fixedHeaderTable({ footer: false,
+                cloneHeadToFoot: false,
+                altClass: 'odd'
+            });
+        });
+
+        $("#btn-pdvvent").click(function () {
+            $("#p_presencia_tab").hide();
+            $("#p_visibilidad_tab").hide();
+            $("#pinicial").hide();
+            $("#pcompuesto").show();
+            $("#p_venta_pdv").show();
+
+            $('#tb_pdv_ventas').fixedHeaderTable({ footer: false,
+                cloneHeadToFoot: false,
+                altClass: 'odd'
+            });
+        });
+
+        $(".dijitDialogCloseIcon .dijitDialogCloseIconHover").click(function () {
+            $("#p_pres_pdv").hide();
+            $("#p_visi_pdv").hide();
+            $("#p_venta_pdv").hide();
+            $("#pinicial").show();
+            $("#pcompuesto").hide();
+        });
+
+        $("#closeimg").on("click", function () {
+            $("#imgfullsize").hide();
+            $("#container").show();
+        });
+
+        $("#container img").on("click", function (e) {
+            var img = $(this).attr("src");
+            $("#imgfullsize img").attr("src", img);
+            $("#imgfullsize").show();
+            $("#container").hide();
+        });
+    </script>
+  }  
+
+<div class="centerPanel" ng-controller="mapa" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="region: 'center',id: 'contentStack'">        
+    <div id="rigthCol" class="edgePanel" data-dojo-type="dojox/layout/ExpandoPane" data-dojo-props="region: 'right', startExpanded: true, splitter:true, title: 'Informative Panel'">
+        <div data-dojo-type="dijit.layout.AccordionContainer" data-dojo-props="region:'leading', splitter:true" style="width: 100%;" id="leftAccordion">
+			
+            <div data-dojo-type="dijit.layout.ContentPane" data-dojo-props='selected:true, title:"Universo MR"'>
+				<!-- content of universe layout -->
+                    <table id="tb_represen" class="table table-condensed table-bordered" >
+                            <thead>
+                                <tr><th colspan="3">{{universo_mr_title}}</th></tr>
+                            </thead>
+                            <tbody ng-repeat="resumen in universo_mr.heads">
+                                <tr>                                     
+                                    <td>
+                                        <li class="icon-plus-sign clustericon" ng-click="shProvince=!shProvince" ui-hide="!!shProvince"></li>
+                                        <li class="icon-minus-sign clustericon" ng-click="shProvince=!shProvince" ui-hide="!shProvince"></li> 
+                                        {{resumen.head_name}}
+                                    </td>
+                                    <td colspan="2">{{resumen.head_value}}</td>
+                                </tr>
+                                <tr ng-repeat ="cluster in resumen.details" ui-hide="!shProvince">
+                                    <td>{{cluster.detail_name}}</td>
+                                    <td>{{cluster.detail_value}}</td>
+                                    <td>{{cluster.detail_percentage}}%</td>
+                                </tr>
+                            </tbody>
+                    </table>
+
+
+                    <table id="tb_resumen_periodo" class="table table-striped table-bordered table-condensed">
+                        <thead>
+                                <tr><th colspan="2">{{universo_mr_periodo_title}}</th><th>{{universo_mr_periodo_title2}}</th></tr>
+                        </thead>
+                        <tbody ng-repeat ="resumen_periodo in universo_mr_periodo.heads">
+                            <tr>
+                                <td colspan="2">
+                                    <li class="icon-plus-sign clustericon" ng-click="shVisitado=!shVisitado" ui-hide="!!shVisitado"></li>
+                                    <li class="icon-minus-sign clustericon" ng-click="shVisitado=!shVisitado" ui-hide="!shVisitado"></li>
+                                    {{ resumen_periodo.head_name }}
+                                </td>
+                                <td >{{ resumen_periodo.head_value }}</td>
+                            </tr>
+                            <!-- listClusterVisitado -->
+                            <tr ng-repeat="cluster in resumen_periodo.details" ui-hide="!shVisitado ">
+                                <td>{{ cluster.detail_name }}</td>
+                                <td>{{ cluster.detail_value }}</td>
+                                <td>{{ cluster.detail_percentage }}%</td>
+                            </tr>
+                            <tr>
+                                <td colspan ="2">{{resumen_periodo.pie_name}}</td>
+                                <td>{{resumen_periodo.pie_value}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+			</div>
+
+			<div data-dojo-type="dijit.layout.ContentPane" data-dojo-props='title:"Presencia SKU Mandatorios"'>
+
+                <div id="p_presencia"> 
+                                       
+                    <table id="tb_rangos" class="table table-bordered table-condensed">
+                        <thead><tr>
+                            <th>Rangos</th><th>Presencia</th></tr></thead>
+                        <tbody>
+                            <tr><td>{{rangossku_mandatorio_title}}</td><td></td></tr>                            
+                            <tr ng-repeat="rangos in rangosku_mandatorio">
+                                <td>
+                                    <li class="icon-map-marker botonmarker" ng-click="getmarkersRangos(rangos.id_elemento, rangos.nombre_elemento, $event)"></li>
+                                    <li class="icon-download-alt botonmarker" ng-click="fndownloads(rangos.id_elemento, 3, $event)"></li>
+                                    {{ rangos.nombre_elemento }}
+                                </td>
+                                <td>{{ rangos.coverage }} %</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table id="tb_mandatorios" class="table table-bordered table-condensed">
+                        <thead>
+                            <tr><th>SKU Mandatorios</th><th>PDV's</th><th>Presencia</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>{{sku_mandatorio_title}}</td><td></td><td></td></tr>
+                            <tr ng-repeat="sku in sku_mandatorio">
+                                <td>
+                                    <li class="icon-map-marker botonmarker" ng-click="getmarkersSKU(sku.id_elemento, sku.nombre_elemento, $event)"></li>
+                                    <li class="icon-download-alt botonmarker" ng-click="fndownloads(sku.id_elemento, 1, $event)"></li>
+                                    {{ sku.nombre_elemento }}
+                                </td>
+                                <td>{{ sku.coverage }}</td>
+                                <td>{{ percentage(sku.coverage/totalcoverage) }} %</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+			
+            </div>
+			
+            <div data-dojo-type="dijit.layout.ContentPane" data-dojo-props="title:'Ventas por SubCategoría'" id="panel_ventas">
+                <div id="pventas">
+
+                        <table class="table table-striped table-bordered table-condensed">                            
+                            <thead>
+                                <tr >
+                                     <th>{{ventas_mandatorio_title}}</th>                                
+                                     <th ng-repeat="cab in ventas_mandatorio[0].subcatego[0].distri">  
+                                        {{cab.name}}
+                                    </th>                           
+                                </tr>
+                            </thead>   
+                            <tbody ng-repeat="venta in ventas_mandatorio">
+                                    
+                                    <tr >
+                                        <td>
+                                            <li class="icon-plus-sign clustericon" ng-click="shVentas=!shVentas" ui-hide="!!shVentas"></li>
+                                            <li class="icon-minus-sign clustericon" ng-click="shVentas=!shVentas" ui-hide="!shVentas"></li>
+                                            {{ venta.categoria }}
+                                        </td>                                                                               
+                                        <td ng-repeat="dis in venta.oList_Sum">
+                                            {{dis.sum_cat_dist}}
+                                        </td>                                                                                 
+                                    </tr>                                                                
+                                    
+                                    <tr ng-repeat="cluster in venta.oList_Sku" ui-hide="!shVentas">
+                                        <td>
+                                            <li class="icon-map-marker botonmarker" ng-click="getmarkersElem_venta(cluster.cod_sku, cluster.sku_nombre, $event)"></li>
+                                            <li class="icon-download-alt botonmarker" ng-click="fndownloads_venta(cluster.cod_sku, 2, $event)"></li>                                            
+                                            {{ cluster.sku_nombre }}
+                                        </td>
+                                        <td id="cluster.cod_sku" ng-repeat="td in cluster.oList_Dist">
+                                            {{td.ventas}}
+                                        </td>                                                                                                  
+                                    </tr>
+                                                           
+                            </tbody>
+                        
+                            <tfoot>
+                                <tr><td>Totales</td><td ng_repeat="tot in totales">{{tot}}</td></tr>
+                            </tfoot>
+
+                        </table>                
+                </div>				    
+			</div>
+            
+            <div data-dojo-type="dijit.layout.ContentPane" data-dojo-props='title:"Elementos de Visibilidad"'>
+				
+                <div id="p_visibilidad" class="tabbable">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab_cant" data-toggle="tab">Cantidades</a></li>
+                        <li><a href="#tab_check" data-toggle="tab">Checks</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_cant">
+                            <table id="tb_ev_canti" class="table table-bordered table-condensed tb_evisibility">
+                                <thead>
+                                    <tr><th>{{elementos_visibilidad_title}}</th><th></th><th></th></tr>
+                                </thead>
+                                                                
+                                <tbody ng-repeat="lista in elementos_visibilidad">
+                                    <tr >
+                                        <td colspan="2">
+                                            <li class="icon-plus-sign clustericon" ng-click="shVentas=!shVentas" ui-hide="!!shVentas"></li>
+                                            <li class="icon-minus-sign clustericon" ng-click="shVentas=!shVentas" ui-hide="!shVentas"></li>
+                                            {{lista.nombre_compania}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat="item in lista.detalle" ui-hide="!shVentas">
+                                        <td >
+                                            <li class="icon-map-marker botonmarker" ng-click="getmarkersElem(item.cod_elemento, item.nombre_elemento, $event)"></li>
+                                            <li class="icon-download-alt botonmarker" ng-click="fndownloads(item.cod_elemento, 2, $event)"></li>
+                                            {{item.nombre_elemento}}
+                                        </td>
+                                        <td >
+                                            {{item.valor_elemento}}
+                                        </td>
+                                    </tr>                                        
+                                                                            
+                                </tbody>
+
+                            </table>
+                        </div>    
+                        
+                        <div class="tab-pane" id="tab_check">
+                            <table id="tb_ev_check" class="table table-bordered table-condensed tb_evisibility">
+                                <thead>
+                                       <tr><th>{{elementos_visibilidad_title}}</th><th></th><th></th></tr>
+                                </thead>
+                                
+                                <tbody ng-repeat="lista in elementos_visibilidad">
+                                    <tr >
+                                        <td colspan="2">
+                                            <li class="icon-plus-sign clustericon" ng-click="shVentas=!shVentas" ui-hide="!!shVentas"></li>
+                                            <li class="icon-minus-sign clustericon" ng-click="shVentas=!shVentas" ui-hide="!shVentas"></li>
+                                            {{lista.nombre_compania}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat="item in lista.detalle" ui-hide="!shVentas">
+                                        <td>
+                                            <li class="icon-map-marker botonmarker" ng-click="getmarkersElem(item.cod_elemento, item.nombre_elemento , $event)"></li>
+                                            <li class="icon-download-alt botonmarker" ng-click="fndownloads(item.cod_elemento, 2, $event)"></li>
+                                            {{item.nombre_elemento}}
+                                        </td>
+                                        <td>
+                                             <div ng-switch on="item.valor_elemento"><div ng-switch-when="0"></div><img ng-switch-default src="/static/img/icon-check.png" alt="" /></div>
+                                        </td>
+                                    </tr>                                   
+                                </tbody>
+
+                            </table>
+                        </div>
+                    
+                    </div>
+                
+                </div>
+			</div>
+
+			<div data-dojo-type="dijit.layout.ContentPane" data-dojo-props='title:"Gráficos"' style="width:100%;">
+                <select id="ddl_categoria" style="width:130px;" ui-select2 ng-model="category" data-placeholder="Categorías" ng-change="loadproducts()">
+                    <option value="0">Todos</option>
+                    <option ng-repeat="category in categories" value="{{ category.Id_ProductCategory }}">{{ category.Product_Category }}</option>
+                </select>
+                <select id="ddl_producto" style="width:190px;" ui-select2 ng-model="product" data-placeholder="Productos">
+                    <option value="0">Todos</option>
+                    <option ng-repeat="product in products" value="{{ product.Cod_Producto }}">{{ product.Nombre_Producto }}</option>
+                </select>
+                <select id="ddl_chart_cluster" ui-select2 ng-model="cluster" data-placeholder="Cluster" style="width:100px;">
+                    <option value="0">Todos</option>
+                    <option ng-repeat="cluster in clusters" value="{{ cluster.codigo }}">{{ cluster.descripcion}}</option>
+                </select>                                        
+                <div style="height:35px; padding: 4px;">
+                    <label class="radio inline">
+                        <input type="radio" ng-model="rad_chart" id="rad_semana" value="1" ng-checked="true"> Semana
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" ng-model="rad_chart" id="rad_mes" value="2" > Mes
+                    </label>
+                    <div id="btn_charts" class="btn btn-primary btn-mini" ng-click="drawcharts()" style="margin-left:10px; float:right;">Actualizar Gráfico</div>
+                </div>
+                
+                <div class="bordered" style="width: 100%; height: 330px; padding:5px; margin-top:5px;">                    
+                    <div id="tendencepanel" style="width: 100%; height: 300px; padding:5px;"></div>                        
+                </div>
+                    
+                <div class="bordered" style="width: 100%; height: 330px; padding:5px;">                    
+                    <div id="comparativepanel" style="width: 100%; height: 330px; padding:5px; margin-top:5px;"></div>                        
+                </div>                      
+			</div>
+		
+        </div>
+    </div>
+
+    <div id="centerContainer" class="edgePanel" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="region: 'center'">
+
+        <div id="filterPanel" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top'">
+            <!-- filtros para año -->
+            <select id="ddl_anio" ui-select2 ng-model="year" data-placeholder="Año" ng-change="loadperiods()" style="width:120px;">
+                <option value="">[Selec. Año]</option>
+                <option ng-repeat="year in years" value="{{ year.anio }}">{{ year.anio }}</option>
+            </select>
+
+            <!-- filtros para mes -->
+            <select id="ddl_mes" ui-select2 ng-model="month" data-placeholder="Mes" ng-change="loadperiods()" style="width:120px;">
+                <option value="">[Selec. Mes]</option>
+                <option ng-repeat="month in months" value="{{ month.numeroMes }}">{{ month.nombreMes }}</option>
+            </select>
+
+            <!-- filtros para periodo -->
+            <select id="ddl_periodo" ui-select2 ng-model="period" data-placeholder="Periodo" style="width:140px;">
+                <option value="">[Selec. Periodo]</option>
+                <option ng-repeat="period in periods" value="{{ period.Cod_Periodo }}">{{ period.Descripcion }}</option>
+            </select>
+                           
+            <!-- filtros para mercado -->
+            <select id="ddl_mercado" ui-select2 ng-model="nodecomercial" data-placeholder="Mercados" ng-change="get_data()" style="width:160px;">
+                <option value="0">Todos los Mercados</option>
+                <option ng-repeat="mercado in mercados" value="{{mercado.0}}">{{mercado.1}}</option>
+            </select>
+
+            <button id="btn_ver_nacional" type="button" class="btn btn-inverse" ng-click="show_nacional()">Nacional</button>
+
+            <button id="btn_ver_departamentos" type="button" class="btn btn-inverse" ng-click="show_departamentos()">Departamentos</button>
+
+            <button id="btn_ver_regiones" type="button" class="btn btn-inverse" ng-click="show_regiones()">Prov. Espec.</button>
+
+            <button id="btn_ver_zonas" type="button" class="btn btn-inverse" ng-click="show_zonas()">Zonas</button>
+
+            <button id="btn_ver_distritos" type="button" class="btn btn-inverse" ng-click="show_district()">Distritos</button> 
+            
+
+        </div>
+        
+        <div id="mapPanel" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="region: 'center'">
+            
+            <!--
+            <div id="mapPanelRegion" data-dojo-type="dojox/layout/ExpandoPane" data-dojo-props="region: 'left', splitter:true, width:150, title:'Settings'">
+                
+                <div data-dojo-type="dijit/layout/TabContainer" style="height: 100%; width:150px;" data-dojo-props="tabPosition:'bottom', splitter:true, tabStrip:true">
+                    
+                    <div data-dojo-type="dijit/layout/ContentPane" title="Map" data-dojo-props="selected:true">
+                        <form class="form-horizontal">
+                            <div class="control-group">
+                            <label>Layers</label>
+                            <ul class="unstyled">
+                                <li ng-repeat="layer in layers">
+                                    <input type="checkbox" ng-model="layer.done"  ng-click="drawlayer()" />
+                                    <span>{{ layer.name }}</span>
+                                </li>
+                            </ul>
+                            </div>
+                        </form>            
+                    </div>
+                    
+                    <div data-dojo-type="dijit/layout/ContentPane" title="Legend">
+                        
+                    </div>
+
+                </div>
+                
+            </div>
+            -->
+            
+            <div id="map" class="mapa" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'center', isLayoutContainer: true">
+            
+            </div>
+
+        </div>
+    
+    </div>
+
+    <div data-dojo-type="dijit/Dialog" data-dojo-props="draggable: false" id="popup" title="DETALLE POR PUNTO DE VENTA">
+
+        <div class="row-fluid">
+        <div id="pinicial" class="span12">
+            <div id="imgfullsize" class="span12" style="display:none;">
+                <button id="closeimg" type="button" class="close">×</button>
+                <img src="" alt="" />
+            </div>
+            <div id="container">
+                <div class="span6 bordered">
+                    <div>
+                        <div>
+                        Interior Antes
+                        </div>
+                        <div>
+                        <img ng-src="{{ photos.interiorAntes }}" alt="" />
+                        </div>
+                    </div>
+                    <div style="margin-bottom:15px;">
+                        <div >
+                        Externa Antes
+                        </div>
+                        <div>
+                        <img ng-src="{{ photos.exteriorAntes }}" alt="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="span6 bordered">
+                    <div>
+                        <div>
+                        Interna Después
+                        </div>
+                        <div>
+                        <img ng-src="{{ photos.interiorDespues }}" alt="" />
+                        </div>
+                    </div>
+                    <div style="margin-bottom:15px;">
+                        <div>
+                        Externa Después
+                        </div>
+                        <div>
+                        <img ng-src="{{ photos.exteriorDespues }}" alt="" />
+                        </div>
+                    </div>
+                </div>                            
+            </div>
+        </div>
+        <div id="pcompuesto" class="span12" style="display:none;">
+            <div id="leftpanel" class="span6 bordered">
+                <img alt="" ng-src="{{ photos.exteriorDespues }}" style="height: 270px; width: 380px" />
+            </div>
+            <div id="p_pdvinfo" class="span6">
+                    
+                <div id="p_presencia_tab" class="tabbable" style="display:none;">
+                    <ul class="nav nav-tabs nav-no-margin">
+                        <li class="active"><a href="#tab_pres_0" data-toggle="tab">Presencia Colgate</a></li>
+                        <li><a href="#tab_pres_1" data-toggle="tab">Presencia Competencia</a></li>  
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active scrollpop" id="tab_pres_0">
+                            <table id="tb_pdv_pcolgate" class="table table-striped table-bottom-bordered table-condensed">
+                        <tbody>                        
+                            <tr ng-repeat="presence in presenciapdv.colgate">
+                                <td >{{ presence.nombreProducto }}</td>
+                                <td ng-switch on="presence.presencia"><div ng-switch-when="0"></div><img ng-switch-default src="/static/img/icon-check.png" alt="" /></td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        </div>
+                        <div class="tab-pane scrollpop" id="tab_pres_1">
+                            <table id="tb_pdv_pcompetencia" class="table table-striped table-bottom-bordered table-condensed">
+                            <tbody>                        
+                                <tr ng-repeat="presence in presenciapdv.competencia">
+                                    <td >{{ presence.nombreProducto }}</td>
+                                    <td ng-switch on="presence.presencia"><div ng-switch-when="0"></div><img ng-switch-default src="/static/img/icon-check.png" alt="" /></td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="p_visibilidad_tab" class="tabbable" style="display:none;">
+                    <ul class="nav nav-tabs nav-no-margin">
+                        <li class="active"><div data-toggle="tab">Cantidad</div></li>
+                        <li><div data-toggle="tab">Check</div></li>  
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active scrollpop" id="tab_visi_0">
+                            <table id="tb_pdv_visicant" class="table table-striped table-bottom-bordered table-condensed table-fixed-header">
+                            <thead>
+                                <tr><th>Elemento de Visibilidad</th><th>Colgate</th><th>P&G</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="visibilidad in visibility">
+                                    <td>{{ visibilidad.nombreElemento }}</td>
+                                    <td>{{ visibilidad.tipo }}</td>
+                                    <td>{{ visibilidad.cantidad }}</td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane scrollpop" id="tab_visi_1">
+                            <table id="tb_pdv_visipres" class="table table-striped table-bottom-bordered table-condensed table-fixed-header">
+                            <thead>
+                                <tr><th>Elemento de Visibilidad</th><th>Colgate</th><th>P&G</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="visibilidad in visibility">
+                                    <td style="width: 259px;">{{ visibilidad.nombreElemento }}</td>
+                                    <td ng-switch on="visibilidad.tipo"><div ng-switch-when="0"></div><img ng-switch-default src="/static/img/icon-check.png" alt="" /></td>
+                                    <td ng-switch on="visibilidad.cantidad"><div ng-switch-when="0"></div><img ng-switch-default src="/static/img/icon-check.png" alt="" /></td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="p_venta_pdv" style="display:none;">
+                    <table id="tb_pdv_ventas" class="table table-striped table-bottom-bordered table-condensed table-fixed-header">
+                        <thead>
+                            <tr>
+                                <th>SKU</th>
+                                <th>Importe de Ventas</th>
+                                <th>Cantidad Vendida</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="sale in sales">
+                                <td>{{ sale.nombreSKU }}</td>
+                                <td>{{ format_soles(sale.ventas) }}</td>
+                                <td>{{ sale.cantidad}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>                
+            </div>
+        </div>
+        <div id="dni-pdv" class="row-fluid">                    
+            <div class="span12">
+            <table class="table table-striped table-bordered table-condensed">
+                <tbody>
+                    <tr>
+                        <td><strong>Código PDV</strong></td><td>{{ pdvinfo.codPuntoVenta }}</td>
+                        <td><strong>Nombre de PDV</strong></td><td>{{ pdvinfo.nombrePuntoVenta }}</td>
+                        <td><strong>Administrador</strong></td><td>{{ pdvinfo.nombreAdministrador }}</td>                      
+                    </tr>
+                    <tr>
+                        <td><strong>Dirección</strong></td><td colspan="5">{{ pdvinfo.direccion }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zona</strong></td><td>{{ pdvinfo.sector }}</td>
+                        <td><strong>Distrito</strong></td><td>{{ pdvinfo.distrito }}</td>                        
+                        <td><strong>Email</strong></td><td>{{ pdvinfo.email }}</td>                        
+                    </tr>
+                    <tr>
+                        <td><strong>Ruta Vendedor</strong></td><td>{{ pdvinfo.rutaVendedor }}</td>
+                        <td><strong>Ultima Visita</strong></td><td>{{ pdvinfo.ultimaVisita }}</td>
+                        <td><strong>Gestor</strong></td><td>{{ pdvinfo.nombreGestor }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>KPI</strong></td>
+                        <td colspan="5">
+                            <div id="btn-inicio" class="btn btn-info btn-mini kpi"><li class="icon-home"></li></div>
+                            <div id="btn-pdvpres" class="btn btn-info btn-mini kpi">Presencia</div>
+                            <div id="btn-pdvvisi" class="btn btn-info btn-mini" style="width:145px;">Elementos de Visibilidad</div>
+                            <div id="btn-pdvvent" class="btn btn-info btn-mini kpi">Ventas</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>     
+        </div>
+    </div>
+    
+    </div>
+</div>

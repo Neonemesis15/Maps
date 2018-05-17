@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "Seguimiento GPS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section JavaScript
+{
+    <script src="@Url.Content("~/static/js/app/controllers/seguimiento-c.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/static/js/vendor/charts/highcharts.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/static/js/vendor/charts/exporting.js")" type="text/javascript"></script>    
+    
+    <style type="text/css">
+        #chart
+        {
+            width: 450px;
+            height: 250px;
+        }
+    </style>
+}
+
+<div class="centerPanel" ng-controller="seguimiento" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="region: 'center',id: 'contentStack'">
+        <div id="rigthColGPS" class="edgePanel" data-dojo-type="dojox/layout/ExpandoPane" data-dojo-props="region: 'right', startExpanded: false, splitter:true, title: 'Informative Panel'">
+            <div data-dojo-type="dijit/layout/ContentPane" style="background-color: #FFFFFF;">
+                <h4>Detalle de Ruta</h4>
+                <table class="table table-striped table-bordered table-condensed">
+                    <tbody>
+                        <tr>
+                            <td>Gie</td><td style="text-align:center;">{{ name_gie }}</td>
+                        </tr>
+                        <tr>
+                            <td>PDV's visitados</td><td style="text-align:center;">{{ visitados }}</td>
+                        </tr>
+                        <tr>
+                            <td>PDV's no visitados</td><td style="text-align:center;">{{ novisitados }}</td>
+                        </tr>
+                        <tr>
+                            <td>Efectividad</td><td style="text-align:center;">{{ efectividad + "%" }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div id="charts" ng-show="efectividad">
+                    <div id="chart" style="width:50%; min-width: 400px; float:left; heigth:400px;"></div>
+                    <div id="gauges" style="width:50%; float:left;">
+                        <div style="width:33%; height:180px; float:left;">
+                        <div id="efectividad" data-dojo-type="dojox/dgauges/components/default/CircularLinearGauge" value="0" interactionArea="none" minimum="0" maximum="100" style="width:100%; height:100%;">
+                        </div>
+                        <div style="text-align:center;">Efectividad</div>
+                    </div>
+                        <div style="width:33%; height:180px; float:left;">
+                        <div id="prom_atencion" data-dojo-type="dojox/dgauges/components/default/CircularLinearGauge" value="0" interactionArea="none" minimum="0" maximum="100" style="width:100%; height:100%;">
+                        </div>
+                        <div style="text-align:center;">Promedio de atención</div>
+                    </div>
+                        <div style="width:33%; height:180px; float:left;">
+                        <div id="prom_traslado" data-dojo-type="dojox/dgauges/components/default/CircularLinearGauge" value="0" interactionArea="none" minimum="0" maximum="100" style="width:100%; height:100%;">
+                        </div>
+                        <div style="text-align:center;">Promedio de traslado</div>
+                    </div>
+                    </div>                    
+                </div>
+                <div style="width:100%; overflow:auto;">
+                    <div style="margin-top:10px;" ng-show="visitados">PDV's Visitados</div>
+                    <div id="grid_visitados" ng-show="visitados"></div>                            
+
+                    <div style="margin-top:10px;" ng-show="novisitados">PDV's No Visitados</div>
+                    <div id="grid_novisitados" ng-show="novisitados"></div>
+                </div>                                
+            </div>    
+        </div>
+        <div id="centerContainer" class="edgePanel" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="region: 'center'">
+            <div id="filterPanel" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top'">
+                <select id="ddl_cv_gie" ui-select2 ng-model="gie" data-placeholder="Seleccione Gie" style="width:180px;">
+                    <option value=""></option>
+                    <option ng-repeat="gie in gies" value="{{ gie.Person_id }}">{{ gie.Person_NameComplet }}</option>
+                </select>
+                <input data-dojo-type="dijit/form/DateTextBox" id="fecha" />
+                <div id="btn_export_comp" class="btn btn-primary btn-small" ng-click="getRoute()" style="float:right;">Pintar ruta</div>
+            </div>
+            <div id="mapPanel" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="region: 'center'">
+                <div id="mapPanelRegion" data-dojo-type="dojox/layout/ExpandoPane" data-dojo-props="region: 'left', splitter:true, width:150, title:'Settings'">
+                    <div data-dojo-type="dijit/layout/TabContainer" style="height: 100%; width:150px;" data-dojo-props="tabPosition:'bottom', splitter:true, tabStrip:true">
+                        <div data-dojo-type="dijit/layout/ContentPane" title="Map" data-dojo-props="selected:true">
+                            <form class="form-horizontal">
+                                <div class="control-group">
+                                <label>Layers</label>                
+                                <ul class="unstyled">
+                                    <li ng-repeat="layer in layers">
+                                        <input type="checkbox" ng-model="layer.done"  ng-click="drawlayer()" />
+                                        <span>{{ layer.text }}</span>
+                                    </li>
+                                </ul>
+                                </div>
+                            </form>            
+                        </div>
+                        <div data-dojo-type="dijit/layout/ContentPane" title="Legend">                        
+                        </div>
+                    </div>
+                </div>
+                <div id="map" class="mapa" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'center', isLayoutContainer: true">
+                </div>
+            </div>            
+        </div>
+    </div>

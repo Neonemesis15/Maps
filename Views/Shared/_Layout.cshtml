@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" > <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" content="" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title></title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width" />
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link href="https://ajax.googleapis.com/ajax/libs/dojo/1.8.0/dijit/themes/claro/claro.css" rel="stylesheet" type="text/css" media="screen" />
+
+        <link href="@Url.Content("~/static/bootstrap/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/static/css/angular-ui.min.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/static/css/select2.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/static/css/Style.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/static/css/style1.css")" rel="stylesheet" type="text/css" />
+        
+        @RenderSection("StyleSheet", required: false)
+
+        <!--[if lte IE 8]>
+          <script>
+            document.createElement('ng-include');
+            document.createElement('ng-pluralize');
+            document.createElement('ng-view');
+ 
+            // Optionally these for CSS
+            document.createElement('ng:include');
+            document.createElement('ng:pluralize');
+            document.createElement('ng:view');
+          </script>
+        <![endif]-->
+
+        <script type="text/javascript" data-dojo-config="
+            async: 1,
+            dojoBlankHtmlUrl: '/Views/Shared/blank.html', 
+            packages: [{
+                        name: 'dgrid',
+                        location: location.pathname.replace(/\/[^/]+$/, '') + '/../static/js/dgrid'
+                       },
+                       {
+                        name: 'put-selector',
+                        location: location.pathname.replace(/\/[^/]+$/, '') + '/../static/js/put-selector'
+                       },
+                       {
+                        name: 'xstyle',
+                        location: location.pathname.replace(/\/[^/]+$/, '') + '/../static/js/xstyle'
+                       }
+                ]" src="https://ajax.googleapis.com/ajax/libs/dojo/1.8.0/dojo/dojo.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular-resource.min.js"></script>
+
+        <script type="text/javascript"> window.jQuery || document.write('<script src="/static/js/vendor/jquery-1.8.0.min.js"><\/script>')</script>
+
+        <!-- custom js calls for xploramaps -->
+        <script type="text/javascript" src="@Url.Content("~/static/bootstrap/js/bootstrap.min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/static/js/vendor/jquery.mousewheel.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/static/js/vendor/select2.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/static/js/vendor/angular-ui.min.js")"></script>
+
+        <!-- JS files for Google Maps V3 -->
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=es"></script>
+        <script type="text/javascript" src="@Url.Content("~/static/js/vendor/gmaps.js")"></script>
+
+        <!-- Highcharts -->
+        <script type="text/javascript" src="@Url.Content("~/static/js/vendor/charts/highcharts.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/static/js/vendor/charts/exporting.js")"></script>    
+
+        <!-- JS project files Angular based -->
+        <script type="text/javascript" src="@Url.Content("~/static/js/app/app.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/static/js/app/filters/all-f.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/static/js/app/services/all-s.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/static/js/app/directives/all-d.js")"></script>
+
+    </head>
+    <body class="claro" ng-app="xploragis">
+        <!--[if lte IE 8]>
+            <p class="chromeframe" style="margin:auto; width: 1024px; text-align:center;">Estás usando un navegador antiguo. <a href="http://browsehappy.com/">Actualiza tu navegador ahora</a> o <a href="http://www.google.com/chromeframe/?redirect=true">instala Google Chrome Frame</a> para tener una mejor experiencia navegando este sitio.</p>
+        <![endif]-->
+
+        <div id="preloader" style="background-image:url(../../static/img/water_seal_xplora.png);" ><div style="position:absolute;top: 55%;left:47%;">Cargando..
+        <img alt="Loading" src='https://ajax.googleapis.com/ajax/libs/dojo/1.8.0/dojox/image/resources/images/loading.gif' /></div></div>
+        <div id="appLayout" class="claro demoLayout" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design: 'sidebar'">    
+            <div class="edgePanel" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top'" style="padding: 0px 0px 0px 0px">
+                <div id="header"> 
+
+                    <div class="navbar">
+                       <!-- <div class="nasvbar-inner">
+                            <div class="container-fluid">-->
+                                <a href="#" class="brand" ></a>
+                                <div class="nav-collapse">
+                                    <ul class="nav">                                
+                                        @*<li>@Html.ActionLink("Lima", "Lima", "Reports")</li>
+                                        <li>@Html.ActionLink("Provincias", "Province", "Reports")</li>*@
+                                        <li>@Html.ActionLink("Seguimiento GPS", "SeguimientoGPS", "Reports")</li>
+                                        <li>@Html.ActionLink("Nivel Nacional", "Bodegas", "Reports")</li>
+                                        @*<li>@Html.ActionLink("Canal Mayorista", "Mayorista", "Reports")</li> *@   
+                                        <li>@Html.ActionLink("Canal Minorista", "Minorista", "Reports")</li>    
+                                        <li>@Html.ActionLink("Reporte de Ingresos","ReportesIngresos","Reports")</li>
+                                    </ul>
+                                </div>
+                            <!--</div>
+                        </div>   -->
+
+                        <!-- 
+                        <div id="title_capa_selec">
+                                    <span>Departamento</span>
+                        </div> 
+                        -->
+
+                    </div>     
+
+                </div>   
+            </div>
+             @RenderBody()
+        </div>
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script type="text/javascript">
+            var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
+            (function (d, t) {
+                var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+                g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+                s.parentNode.insertBefore(g, s)
+            } (document, 'script'));
+        </script>
+        @RenderSection("JavaScript", required: false)
+    </body>
+
+</html>

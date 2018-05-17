@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = "ReportesIngresos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript" src="@Url.Content("~/static/js/app/controllers/ReportesIngresos-c.js")"></script>
+
+<link href="@Url.Content("~/static/css/Style.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/static/css/ReportesIngresos.css")" rel="stylesheet" type="text/css" />
+
+
+
+<script type="text/javascript">
+
+    //        $("#Resumen").click(
+
+    $(document).ready(function () {
+        Ing_Diarios();
+    });
+
+    function Ing_Anuales() {
+        $("#Div_IngresosDiarios").hide();
+        $("#Div_IngresosSemanales").hide();
+        $("#Div_IngresosAnuales").show();
+    }
+
+    function Ing_Semanales() {
+        $("#Div_IngresosDiarios").hide();
+        $("#Div_IngresosAnuales").hide();
+        $("#Div_IngresosSemanales").show();
+    }
+
+    function Ing_Diarios() {
+        $("#Div_IngresosAnuales").hide();
+        $("#Div_IngresosSemanales").hide();
+        $("#Div_IngresosDiarios").show();
+    }
+
+</script>
+
+
+
+<div id="Datos" ng-controller="reporteingresos">
+    <div class="edgePanel" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'center'">
+      
+       <ul id="menu">
+                  <li><a onclick="Ing_Anuales()">Ingresos Anuales</a></li>
+                  <li><a onclick="Ing_Semanales()">Ingresos Semanales</a></li>
+                  <li><a onclick="Ing_Diarios()">Ingresos Diarios</a></li>
+        </ul>
+      
+      <div  data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">  
+       
+       <div id="Div_IngresosAnuales"  >
+        
+        <select id="ddl_anio_anual" ui-select2 ng-model="anio_anual" data-placeholder="Año" ng-change="load_ingresos_anuales()" style="width:140px;">
+            <option value=""></option>
+            <option ng-repeat="anio_an in years" value="{{ anio_an.anio}}">{{ anio_an.anio}}</option>
+        </select>
+        
+        <h2>Ingresos Anuales</h2>
+
+        <div id="Datos_IngresosAnuales">
+            <table class="table table-striped table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th colspan="3"></th>
+                        <th ng-repeat="res in IngresosAnuales[0].detalles">{{res.nombre}}</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>Id Usuario</th>
+                        <th>Usuario</th>
+                        <th>EjecutivoColgate</th>
+                        <th ng-repeat="res in IngresosAnuales[0].detalles">{{res.subnombre}}</th>
+                        <th>Resultado</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat = "dat in IngresosAnuales">
+                    <td>{{dat.idusuario}}</td>
+                    <td>{{dat.usuario}}</td>
+                    <td>{{dat.ejecutivo}}</td>
+                    <td ng-repeat="rs in dat.detalles"><img ng-src="{{rs.img}}" /> </td>
+                    <td><img ng-src="{{dat.imgresultado}}"/></td>
+                </tbody>
+            </table>       
+        </div>
+
+       </div>
+
+       <div id="Div_IngresosSemanales">
+
+        <select id="ddl_anio_semanal" ui-select2 ng-model="anio_semanal" data-placeholder="Año" ng-change="load_ingresos_semanales()" style="width:140px;">
+            <option value=""></option>
+            <option ng-repeat="anio_an in years" value="{{ anio_an.anio}}">{{ anio_an.anio}}</option>
+        </select>
+        <select id="ddl_mes_semanal" ui-select2 ng-model="month_semanal" data-placeholder="Mes" ng-change="load_ingresos_semanales()" style="width:140px;">
+            <option value=""></option>
+            <option ng-repeat="month in months" value="{{ month.numeroMes }}">{{ month.nombreMes }}</option>
+        </select>
+
+        <h2>Ingresos Semanales</h2>
+
+        <div id="Datos_IngresosSemanales">
+            
+            <table class="table table-striped table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th colspan="3"></th>
+                        <th ng-repeat="res in IngresosSemanales[0].detalles">{{res.nombre}}</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>Id Usuario</th>
+                        <th>Usuario</th>
+                        <th>EjecutivoColgate</th>
+                        <th ng-repeat="res in IngresosSemanales[0].detalles">{{res.subnombre}}</th>
+                        <th>Resultado</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat = "dat in IngresosSemanales">
+                    <td>{{dat.idusuario}}</td>
+                    <td>{{dat.usuario}}</td>
+                    <td>{{dat.ejecutivo}}</td>
+                    <td ng-repeat="rs in dat.detalles"><img ng-src="{{rs.img}}" /> </td>
+                    <td><img ng-src="{{dat.imgresultado}}"/></td>
+                </tbody>
+            </table>  
+        
+        </div>
+
+       </div>
+
+       <div id="Div_IngresosDiarios">
+
+        <select id="ddl_anio_diario" ui-select2 ng-model="anio_diario" data-placeholder="Año" ng-change="" style="width:140px;">
+            <option value=""></option>
+            <option ng-repeat="anio_an in years" value="{{ anio_an.anio}}">{{ anio_an.anio}}</option>
+        </select>
+        <select id="ddl_mes_diario" ui-select2 ng-model="month_diario" data-placeholder="Mes" ng-change="loadSemanas()" style="width:140px;">
+            <option value=""></option>
+            <option ng-repeat="month in months" value="{{ month.numeroMes }}">{{ month.nombreMes }}</option>
+        </select>
+        <select id="ddl_sem_diario" ui-select2 ng-model="sem_diario" data-placeholder="Semana" ng-change="load_ingresos_diarios()" style="width:140px;">
+                    <option value=""></option>
+                    <option ng-repeat="sem in sems" value="{{sem.codSemana }}">{{ sem.semanaDescripcion }}</option>
+        </select>
+
+        <h2>Ingresos Diarios</h2>
+
+        <div id="Datos_IngresosDiarios">
+            <table class="table table-striped table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th colspan="3"></th>
+                        <th ng-repeat="res in IngresosDiarios[0].detalles">{{res.nombre}}</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>Id Usuario</th>
+                        <th>Usuario</th>
+                        <th>EjecutivoColgate</th>
+                        <th ng-repeat="res in IngresosDiarios[0].detalles">{{res.subnombre}}</th>
+                        <th>Resultado</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat = "dat in IngresosDiarios">
+                    <td>{{dat.idusuario}}</td>
+                    <td>{{dat.usuario}}</td>
+                    <td>{{dat.ejecutivo}}</td>
+                    <td ng-repeat="rs in dat.detalles"><img ng-src="{{rs.img}}" /> </td>
+                    <td><img ng-src="{{dat.imgresultado}}"/></td>
+                </tbody>
+            </table>  
+        
+        </div>
+
+
+       </div>
+      
+      </div>
+
+    </div> 
+</div>

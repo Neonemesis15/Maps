@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Colgate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section JavaScript
+{
+    <script type="text/javascript" src="@Url.Content("~/static/js/app/controllers/index-c.js")"></script>
+}
+
+<div id="map" class="mapa" ng-controller="mapa" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'center', isLayoutContainer: true">
+</div>
+
+
